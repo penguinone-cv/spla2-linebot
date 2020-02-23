@@ -81,11 +81,11 @@ def handle_message(event):
     if ("プラべ" in receive_txt or "プライベートマッチ" in receive_txt) and "募集" in receive_txt:
         private = True
 
-    if league and private:
+    if league==True and private==True:
         league = False
         private = False
 
-    if league:
+    if league==True:
         hour = int(re.sub("\\D", "", receive_txt))%24
         hour = check_hour(hour)
         text = get_rule_stage(hour)
