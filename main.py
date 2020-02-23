@@ -7,7 +7,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, TemplateSendMessage, MessageAction, ButtonsTemplate,
 )
 import os
 
@@ -40,11 +40,28 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    #text = event.message.text
-    text = "v('ω')v"
+    receive_txt = event.message.text
+    league = False
+    private = False
+    if ("リグマ" in receive_txt or "リーグマッチ" in receive_txt or "4タグ" in receive_txt) and "募集" in receive_txt:
+        league = True
+
+    if ("プラべ" in receive_txt or "プライベートマッチ" in receive_txt) and "募集" in receive_txt:
+        private = True
+
+    if league and private:
+        league = False
+        private = False
+
+    text='v('ω')v'
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=text))
+        TextSendMessage(text=text),
+        TemplateSendMessage(alt_text='Buttons template',
+                            template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
+                                                     title='リーグマッチ募集',
+                                                     text='選択してください',
+                                                     actions=[MessageAction(label='参加する', text='参加')])))
 
 
 if __name__ == "__main__":
