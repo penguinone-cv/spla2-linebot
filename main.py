@@ -56,7 +56,6 @@ def handle_message(event):
     text="v('ω')v"
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=text),
         TemplateSendMessage(alt_text='Buttons template',
                             template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
                                                      title='リーグマッチ募集',
