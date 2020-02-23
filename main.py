@@ -93,7 +93,7 @@ def handle_message(event):
             TemplateSendMessage(alt_text='Buttons template',
                                 template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
                                                         title='リーグマッチ募集',
-                                                        text=get_rule_stage(hour),
+                                                        text=text,
                                                         actions=[MessageAction(label='参加する', text='参加')])))
 
 
