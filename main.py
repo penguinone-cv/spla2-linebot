@@ -1,4 +1,8 @@
 from flask import Flask, request, abort
+import urllib
+import json
+from datetime import datetime
+import re
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -76,12 +80,12 @@ def handle_message(event):
     if ("プラべ" in receive_txt or "プライベートマッチ" in receive_txt) and "募集" in receive_txt:
         private = True
 
-
     if league and private:
         league = False
         private = False
 
     if league:
+        hour = re.sub("\\D", "", receive_txt)
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(alt_text='Buttons template',
