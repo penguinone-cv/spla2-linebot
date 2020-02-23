@@ -42,7 +42,7 @@ def callback():
     return 'OK'
 
 def get_rule_stage(hour):
-    req = urllib.request.Request("https://spla2.yuu26.com/league/schedule".format(rule='league'))
+    req = urllib.request.Request("https://spla2.yuu26.com/{rule}/schedule".format(rule='league'))
     req.add_header("user-agent", "@penguinone2580")
     with urllib.request.urlopen(req) as res:
         response_body = res.read().decode("utf-8")
