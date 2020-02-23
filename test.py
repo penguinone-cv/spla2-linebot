@@ -32,6 +32,11 @@ def check_hour(hour):
         hour = hour - 1
     return hour
 
-hour = int(re.sub("\\D", "", "リグマ26募集"))%24
-txt = get_rule_stage(check_hour(hour))
-print(txt)
+receive_txt = "リグマ21募集"
+if ("リグマ" in receive_txt or "リーグマッチ" in receive_txt or "4タグ" in receive_txt) and "募集" in receive_txt:
+    league = True
+
+if league:
+    hour = int(re.sub("\\D", "", receive_txt))%24
+    txt = get_rule_stage(check_hour(hour))
+    print(txt)
