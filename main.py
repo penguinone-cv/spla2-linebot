@@ -12,7 +12,7 @@ from linebot.models import (
 )
 import os
 
-#import Func
+import Func
 
 app = Flask(__name__)
 
@@ -55,24 +55,17 @@ def handle_message(event):
         league = False
         private = False
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TemplateSendMessage(alt_text='Buttons template',
-                            template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
-                                                    title='リーグマッチ募集',
-                                                    text="a",
-                                                    actions=[MessageAction(label='参加する', text='参加')])))
     if league==True:
-        #hour = int(re.sub("\\D", "", receive_txt))%24
-        #hour = check_hour(hour)
-        #text = get_rule_stage(hour)
+        hour = int(re.sub("\\D", "", receive_txt))%24
+        hour = check_hour(hour)
+        text = get_rule_stage(hour)
         print(text)
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(alt_text='Buttons template',
                                 template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
                                                         title='リーグマッチ募集',
-                                                        text="a",
+                                                        text=text,
                                                         actions=[MessageAction(label='参加する', text='参加')])))
 
 if __name__ == "__main__":
