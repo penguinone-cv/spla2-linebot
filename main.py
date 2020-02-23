@@ -85,7 +85,7 @@ def handle_message(event):
         private = False
 
     if league:
-        hour = re.sub("\\D", "", receive_txt)
+        hour = int(re.sub("\\D", "", receive_txt))
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(alt_text='Buttons template',
