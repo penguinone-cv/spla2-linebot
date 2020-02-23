@@ -86,12 +86,14 @@ def handle_message(event):
 
     if league:
         hour = int(re.sub("\\D", "", receive_txt))
+        hour = check_hour(hour)
+        text = get_rule_stage(hour)
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(alt_text='Buttons template',
                                 template=ButtonsTemplate(thumbnail_image_url='https://www.nintendo.co.jp/switch/aab6a/assets/images/battle-sec03_logo.png',
                                                         title='リーグマッチ募集',
-                                                        text=get_rule_stage(check_hour(hour)),
+                                                        text=get_rule_stage(hour),
                                                         actions=[MessageAction(label='参加する', text='参加')])))
 
 
