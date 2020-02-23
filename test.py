@@ -32,6 +32,6 @@ def check_hour(hour):
         hour = hour - 1
     return hour
 
-hour = 22
+hour = int(re.sub("\\D", "", "リグマ26募集"))%24
 txt = get_rule_stage(check_hour(hour))
 print(txt)
