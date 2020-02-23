@@ -16,8 +16,6 @@ from linebot.models import (
 )
 import os
 
-import Func
-
 app = Flask(__name__)
 
 #環境変数取得
