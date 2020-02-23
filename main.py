@@ -86,7 +86,7 @@ def handle_message(event):
         private = False
 
     if league==True:
-        #hour = int(re.sub("\\D", "", receive_txt))%24
+        hour = int(re.sub("\\D", "", receive_txt))%24
         hour = check_hour(hour)
         #text = get_rule_stage(hour)
         print(text)
