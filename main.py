@@ -53,7 +53,7 @@ def handle_message(event):
         league = False
         private = False
 
-    text='v('ω')v'
+    text="v('ω')v"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=text),
