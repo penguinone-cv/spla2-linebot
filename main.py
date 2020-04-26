@@ -75,7 +75,12 @@ def handle_message(event):
     receive_txt = event.message.text
     league = False
     private = False
+    recruit = False
     if ("リグマ" in receive_txt or "リーグマッチ" in receive_txt or "4タグ" in receive_txt) and "募集" in receive_txt:
+        league = True
+        recruit = True
+
+    elif "リグマ" in receive_txt or "リーグマッチ" in receive_txt or "4タグ" in receive_txt:
         league = True
 
     if ("プラべ" in receive_txt or "プライベートマッチ" in receive_txt) and "募集" in receive_txt:
@@ -84,8 +89,9 @@ def handle_message(event):
     if league==True and private==True:
         league = False
         private = False
+        recruit = False
 
-    if league==True:
+    if league==True and recruit==True:
         hour = int(re.sub("\\D", "", receive_txt))%24
         hour = check_hour(hour)
         text = get_rule_stage(hour)
@@ -97,6 +103,15 @@ def handle_message(event):
                                                         title='リーグマッチ募集',
                                                         text=text,
                                                         actions=[MessageAction(label='参加する', text='参加')])))
+
+    elif league==True:
+        hour = int(re.sub("\\D", "", receive_txt))%24
+        hour = check_hour(hour)
+        text = get_rule_stage(hour)
+        print(text)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=text))
 
 if __name__ == "__main__":
 #    app.run()
